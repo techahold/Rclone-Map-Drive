@@ -56,17 +56,12 @@ New-Item "C:\Users\$username\AppData\Roaming\rclone\rclone.conf"
 Set-Content "C:\Users\$username\AppData\Roaming\rclone\rclone.conf" $rclonecfg_conf
 
 #update token for current user, been changed to just setup as update just takes to onedrive. this should be written to the program files folder and a shortcut made ideally with rclone shortcut
-$update_token = @"
-Write-Output "Setup your cloud connection now"
-cd $rclonedir
-rclone config
-"@
+
 # Create Start Program Entries 
 new-item "C:\Users\$username\AppData\Local\rclone\logs" -itemtype directory
 new-item "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\rclone - $RemoteName" -itemtype directory
 New-Item "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\rclone - $RemoteName\Set Token for $RemoteName.bat"
-Set-Content "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\rclone - $RemoteName\Set Token for $RemoteName.bat" $update_token
-
+Set-Content "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\rclone - $RemoteName\Set Token for $RemoteName.bat" "echo "Setup your cloud connection now" `ncd $rclonedir`nrclone config"
 # We probably want this written out after the script above is finished, 
 $MapDriveBat= @"
 cd $rclonedir 
