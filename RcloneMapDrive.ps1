@@ -27,15 +27,6 @@ $RemoteName="Sharepoint"
 $MapDriveName="\\server\shared"
 $tag = (Invoke-WebRequest "https://api.github.com/repos/rclone/rclone/releases/latest" | ConvertFrom-Json)[0].tag_name
 
-#Probably not needed, but still maybe useful, just needs simple setup if its there, could have a load of basic ones setup 
-#$rclonecfg_conf = @"
-#[$RemoteName]
-#type = onedrive
-#token = {"access_token":"-","token_type":"Bearer","refresh_token":"-","expiry":"2022-09-13T15:12:11.1298765+01:00"}
-#drive_id = b!--
-#drive_type = business
-#"@
-
 #new-item c:\ProgramData\rclone -itemtype directory
 
 #Get and expand programs
@@ -50,10 +41,10 @@ Remove-Item "C:\Program Files\Rclone\Rclone" -Force
 #install winfsp
 Start-Process $rclonedir\winfsp.msi -ArgumentList /passive
 
-#generate Rclone config
+#generate Rclone config #Probably not needed, but still maybe useful, just needs simple setup if its there, could have a load of basic ones setup 
 New-Item "C:\Users\$username\AppData\Roaming\rclone -itemtype directory
 New-Item "C:\Users\$username\AppData\Roaming\rclone\rclone.conf"
-Set-Content "C:\Users\$username\AppData\Roaming\rclone\rclone.conf" $rclonecfg_conf
+Set-Content "C:\Users\$username\AppData\Roaming\rclone\rclone.conf" "[$RemoteName]`ntype = onedrive`ntoken = {"access_token":"-","token_type":"Bearer","refresh_token":"-","expiry":"2022-09-13T15:12:11.1298765+01:00"}`ndrive_id = b!--`ndrive_type = business"
 
 #update token for current user, been changed to just setup as update just takes to onedrive. this should be written to the program files folder and a shortcut made ideally with rclone shortcut
 
@@ -63,13 +54,9 @@ new-item "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Progra
 New-Item "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\rclone - $RemoteName\Set Token for $RemoteName.bat"
 Set-Content "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\rclone - $RemoteName\Set Token for $RemoteName.bat" "echo Setup your cloud connection now `ncd $rclonedir`nrclone config"
 # We probably want this written out after the script above is finished, 
-$MapDriveBat= @"
-cd $rclonedir 
-rclone mount ${RemoteName}:/ P: --volname $MapDriveName --vfs-cache-mode off --no-console --log-file %LOCALAPPDATA%\rclone\logs\driveP.txt
-"@
 
 New-Item "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\rclone - $RemoteName\Map Drive for $RemoteName.bat"
-Set-Content "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\rclone - $RemoteName\Map Drive for $RemoteName.bat" $MapDriveBat
+Set-Content "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\rclone - $RemoteName\Map Drive for $RemoteName.bat" "cd $rclonedir`nrclone mount ${RemoteName}:/ P: --volname $MapDriveName --vfs-cache-mode off --no-console --log-file %LOCALAPPDATA%\rclone\logs\driveP.txt"
 
 Copy-Item "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\rclone - $RemoteName\Map Drive for $RemoteName.bat" -Destination "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Map Drive for $RemoteName.bat" #user startup 
 
