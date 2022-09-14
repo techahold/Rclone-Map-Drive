@@ -61,7 +61,7 @@ Set-Content "C:\Users\$username\AppData\Roaming\rclone\rclone.conf" $rclonecfg_c
 new-item "C:\Users\$username\AppData\Local\rclone\logs" -itemtype directory
 new-item "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\rclone - $RemoteName" -itemtype directory
 New-Item "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\rclone - $RemoteName\Set Token for $RemoteName.bat"
-Set-Content "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\rclone - $RemoteName\Set Token for $RemoteName.bat" "echo "Setup your cloud connection now" `ncd $rclonedir`nrclone config"
+Set-Content "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\rclone - $RemoteName\Set Token for $RemoteName.bat" "echo Setup your cloud connection now `ncd $rclonedir`nrclone config"
 # We probably want this written out after the script above is finished, 
 $MapDriveBat= @"
 cd $rclonedir 
