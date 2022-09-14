@@ -76,5 +76,5 @@ rclone mount ${RemoteName}:/ P: --volname $MapDriveName --vfs-cache-mode off --n
 New-Item "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\rclone - $RemoteName\Map Drive for $RemoteName.bat"
 Set-Content "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\rclone - $RemoteName\Map Drive for $RemoteName.bat" $MapDriveBat
 
-Copy-Item "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\rclone - $RemoteName\Map Drive for $RemoteName.bat" -Destination "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\" #user startup 
+Copy-Item "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\rclone - $RemoteName\Map Drive for $RemoteName.bat" -Destination "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Map Drive for $RemoteName.bat" #user startup 
 
