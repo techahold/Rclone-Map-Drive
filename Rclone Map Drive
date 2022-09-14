@@ -70,7 +70,7 @@ Set-Content "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Pro
 # We probably want this written out after the script above is finished, 
 $MapDriveBat= @"
 cd $rclonedir 
-rclone mount $RemoteName:/ P: --volname $MapDriveName --vfs-cache-mode off --no-console --log-file %LOCALAPPDATA%\rclone\logs\driveP.txt
+rclone mount ${RemoteName}:/ P: --volname $MapDriveName --vfs-cache-mode off --no-console --log-file %LOCALAPPDATA%\rclone\logs\driveP.txt
 "@
 
 New-Item "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\rclone - $RemoteName\Map Drive for $RemoteName.bat"
