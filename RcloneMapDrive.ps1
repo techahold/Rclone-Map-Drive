@@ -10,24 +10,10 @@ if (-Not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 # Get username for logged in user
 $username = ((Get-WMIObject -ClassName Win32_ComputerSystem).Username).Split('\')[1]
 
-#download files
-#unzip 
-#create conf
-#reg entries
-#run mount 
-#startup command for machine 
-#shortcut in startup and program files in case of crashing
-#change data to program files
-#invoke web request
-#user script , owner of explorer.exe. Run cmd as user
-#ask for drive letter
-
 $rclonedir="C:\Program Files\Rclone"
 $RemoteName="Sharepoint"
 $MapDriveName="\\server\shared"
 $tag = (Invoke-WebRequest "https://api.github.com/repos/rclone/rclone/releases/latest" | ConvertFrom-Json)[0].tag_name
-
-#new-item c:\ProgramData\rclone -itemtype directory
 
 #Get and expand programs
 new-item $rclonedir -itemtype directory
@@ -42,11 +28,9 @@ Remove-Item "C:\Program Files\Rclone\Rclone" -Force
 Start-Process $rclonedir\winfsp.msi -ArgumentList /passive
 
 #generate Rclone config #Probably not needed, but still maybe useful, just needs simple setup if its there, could have a load of basic ones setup 
-New-Item "C:\Users\$username\AppData\Roaming\rclone -itemtype directory
-New-Item "C:\Users\$username\AppData\Roaming\rclone\rclone.conf"
-Set-Content "C:\Users\$username\AppData\Roaming\rclone\rclone.conf" "[$RemoteName]`ntype = onedrive`ntoken = {"access_token":"-","token_type":"Bearer","refresh_token":"-","expiry":"2022-09-13T15:12:11.1298765+01:00"}`ndrive_id = b!--`ndrive_type = business"
-
-#update token for current user, been changed to just setup as update just takes to onedrive. this should be written to the program files folder and a shortcut made ideally with rclone shortcut
+#New-Item "C:\Users\$username\AppData\Roaming\rclone -itemtype directory
+#New-Item "C:\Users\$username\AppData\Roaming\rclone\rclone.conf"
+#Set-Content "C:\Users\$username\AppData\Roaming\rclone\rclone.conf" "[$RemoteName]`ntype = onedrive`ntoken = {"access_token":"-","token_type":"Bearer","refresh_token":"-","expiry":"2022-09-13T15:12:11.1298765+01:00"}`ndrive_id = b!--`ndrive_type = business"
 
 # Create Start Program Entries 
 new-item "C:\Users\$username\AppData\Local\rclone\logs" -itemtype directory
