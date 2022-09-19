@@ -35,7 +35,7 @@ new-item "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Progra
 New-Item "C:\Users\$username\AppData\Roaming\techahold\Setup $RemoteName.bat"
 New-Item "C:\Users\$username\AppData\Roaming\techahold\$RemoteName $username.bat"
 
-Set-Content "C:\Users\$username\AppData\Roaming\techahold\Setup $RemoteName.bat" "@echo off `necho Setup your cloud connection now `ncd $rclonedir`nrclone config"
+Set-Content "C:\Users\$username\AppData\Roaming\techahold\Setup $RemoteName.bat" "@echo off `necho Setup your cloud connection now `ncd $rclonedir`nrclone config`npowershell.exe"
 
 
 Set-Content "C:\Users\$username\AppData\Roaming\techahold\$RemoteName $username.bat" "$rclonedir\rclone mount ${sharepoint}:/ P: --volname $MapDriveName --vfs-cache-mode off --no-console --log-file %LOCALAPPDATA%\rclone\logs\driveP.txt"
