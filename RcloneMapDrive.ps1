@@ -27,11 +27,6 @@ Remove-Item "C:\Program Files\Rclone\Rclone" -Force
 #install winfsp
 Start-Process $rclonedir\winfsp.msi -ArgumentList /passive
 
-#generate Rclone config #Probably not needed, but still maybe useful, just needs simple setup if its there, could have a load of basic ones setup 
-#New-Item "C:\Users\$username\AppData\Roaming\rclone -itemtype directory
-#New-Item "C:\Users\$username\AppData\Roaming\rclone\rclone.conf"
-#Set-Content "C:\Users\$username\AppData\Roaming\rclone\rclone.conf" "[$RemoteName]`ntype = onedrive`ntoken = {"access_token":"-","token_type":"Bearer","refresh_token":"-","expiry":"2022-09-13T15:12:11.1298765+01:00"}`ndrive_id = b!--`ndrive_type = business"
-
 # Create Start Program Entries 
 new-item "C:\Users\$username\AppData\Local\rclone\logs" -itemtype directory
 new-item "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\rclone - $RemoteName" -itemtype directory
