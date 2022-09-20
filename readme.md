@@ -1,8 +1,8 @@
 # Rclone Map Drive by Techahold
 
-Program using Powershell to map cloud storage as internal drive using Rsync for transmitting and recieving files. 
-Executable can be used for general install or script can be customised to change installed files location and mapped drive name.
-This installs required dependencies and creates a startup entry to map drive on log in.
+Program using Powershell to map cloud storage as internal drive using Rsync for transmitting and recieving files. </br>
+Executable can be used for general install or script can be customised to change installed files location and mapped drive name.</br>
+This installs required dependencies and creates a startup entry to map drive on log in.</br>
 
 ### Easy Install
 Easy install with exe
