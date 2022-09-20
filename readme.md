@@ -7,19 +7,19 @@ This installs required dependencies and creates a startup entry to map drive on 
 ### Easy Install
 Easy install with exe
 1. Download exe and run as admin
-2. Bat file directory will open automatically.
-3. Run "Setup Map Drive.bat" Rclone config will launch
-4. Connect Rclone to cloud platform by selecting relevant options. Default settings are fine in most cases Specific config details on https://rclone.org/
-5. Once configured, run "Map Drive $Username.bat" to mount drive
+2. The setup file directory will open automatically.
+3. Run `Setup Techahold Map Drive` Rclone config will launch, and create a file which will be copied to your users startup folder.
+4. Connect Rclone to cloud platform by selecting the relevant options. Default settings are fine in most cases Specific config details on https://rclone.org/
+5. Once configured, run `Techahold Map Drive for $Username` to mount drive
 
 ### Easy install with Script
 1. Download ps1 file and open powershell as admin
 2. cd to directory the script is located.
-3. Type ".\RcloneMapDrive.ps1" without quotes
-4. Bat file directory will open automatically.
-5. Run "Setup Map Drive.bat" Rclone config will launch
+3. Type `.\RcloneMapDrive.ps1`
+4. The setup file directory will open automatically.
+5. Run `Setup Techahold Map Drive` Rclone config will launch, and create a file which will be copied to your users startup folder.
 6. Connect Rclone to cloud platform by selecting relevant options. Default settings are fine in most cases Specific config details on https://rclone.org/
-7. Once configured, run "Map Drive $Username.bat" to mount drive
+7. Once configured, run `Techahold Map Drive for $Username` to mount drive
 
 ### Custom Install
 `$rclonedir` specifies where Rclone installs. This is called numerous times and a holding directory is created to store the installer files during installation.</br>
