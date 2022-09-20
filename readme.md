@@ -5,7 +5,7 @@ Executable can be used for general install or script can be customised to change
 This installs required dependencies and creates a startup entry to map drive on log in.</br>
 
 ### Easy Install
-Easy install with !(exe)[https://github.com/techahold/Rclone-Map-Drive/raw/main/RcloneMapDrive%20v1.exe]
+Easy install with [exe](https://github.com/techahold/Rclone-Map-Drive/raw/main/RcloneMapDrive%20v1.exe)
 1. Download exe and run as admin
 2. The setup file directory will open automatically.
 3. Run `Setup Techahold Map Drive` Rclone config will launch, and create a file which will be copied to your users startup folder.
