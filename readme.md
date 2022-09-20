@@ -22,6 +22,8 @@ Easy install with exe
 7. Once configured, run "Map Drive $Username.bat" to mount drive
 
 ### Custom Install
-[] `$rclonedir` specifies where Rclone installs. This is called numerous times and a holding directory is created to store the installer files during installation.
-[] `$RemoteName` defines which remote service it is connecting to. This can be changed safely without impacting any functions for customer specific customisation etc.
-[] `$MapDriveName` is the name the drive will be listed as in File Explorer.
+`$rclonedir` specifies where Rclone installs. This is called numerous times and a holding directory is created to store the installer files during installation.
+
+`$RemoteName` defines which remote service it is connecting to. This can be changed safely without impacting any functions for customer specific customisation etc.
+
+`$MapDriveName` is the name the drive will be listed as in File Explorer.
