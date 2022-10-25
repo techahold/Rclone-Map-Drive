@@ -4,14 +4,14 @@ $username = ((Get-WMIObject -ClassName Win32_ComputerSystem).Username).Split('\'
 $rclonedir="C:\Program Files\Rclone"
 $RemoteName="Techahold Map Drive"
 $MapDriveName="\\server\shared"
-$tag = (Invoke-WebRequest "https://api.github.com/repos/rclone/rclone/releases/latest" | ConvertFrom-Json)[0].tag_name
+#$tag = (Invoke-WebRequest "https://api.github.com/repos/rclone/rclone/releases/latest" | ConvertFrom-Json)[0].tag_name
 
 #Get and expand programs
 new-item $rclonedir -itemtype directory
-Invoke-WebRequest -Uri "https://github.com/rclone/rclone/releases/download/$tag/rclone-$tag-windows-amd64.zip" -outfile "$rclonedir\rclone.zip"
+Invoke-WebRequest -Uri "https://downloads.rclone.org/v1.60.0/rclone-v1.60.0-windows-amd64.zip" -outfile "$rclonedir\rclone.zip"
 Invoke-WebRequest -Uri "https://github.com/winfsp/winfsp/releases/download/v1.11/winfsp-1.11.22176.msi" -outfile "$rclonedir\winfsp.msi"
 Expand-Archive -LiteralPath $rclonedir\rclone.zip -DestinationPath $rclonedir -Force
-Copy-Item $rclonedir\rclone-$tag-windows-amd64\* -Destination $rclonedir\
+Copy-Item $rclonedir\rclone-v1.60.0-windows-amd64\* -Destination $rclonedir\
 Remove-Item "$rclonedir\rclone.zip" -Force
 Remove-Item "$rclonedir\rclone-$tag-windows-amd64\" -Force -Recurse
 
