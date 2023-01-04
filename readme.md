@@ -10,7 +10,7 @@ This installs required dependencies and creates a startup entry to map drive on 
 3. Type `.\RcloneMapDrive.ps1`
 4. The setup file directory will open automatically.
 5. Run `Setup Techahold Map Drive` Rclone config will launch, and create a file which will be copied to your users startup folder.
-6. Connect Rclone to cloud platform by selecting relevant options. Default settings are fine in most cases Specific config details on https://rclone.org/
+6. Connect Rclone to cloud platform by selecting relevant options. Default settings are fine in most cases Specific config details on https://rclone.org/. The Config is fixed to a remote name of "Sharepoint".
 7. Once configured, run `Techahold Map Drive for $Username` to mount drive
 
 ### Custom Install
