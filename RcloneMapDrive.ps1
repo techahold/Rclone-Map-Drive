@@ -2,7 +2,7 @@
 $username = ((Get-WMIObject -ClassName Win32_ComputerSystem).Username).Split('\')[1]
 
 $rclonedir="C:\Program Files\Rclone"
-$RemoteName="Techahold Map Drive"
+$RemoteName="Sharepoint"
 $MapDriveName="\\server\shared"
 #$tag = (Invoke-WebRequest "https://api.github.com/repos/rclone/rclone/releases/latest" | ConvertFrom-Json)[0].tag_name
 
@@ -27,8 +27,8 @@ New-Item "C:\Users\$username\AppData\Roaming\techahold\Setup $RemoteName.bat"
 New-Item "C:\Users\$username\AppData\Roaming\techahold\$RemoteName $username.bat"
 New-Item "C:\Users\$username\AppData\Roaming\techahold\updateconfig.ps1"
 
-Set-Content "C:\Users\$username\AppData\Roaming\techahold\Setup $RemoteName.bat" "@echo off `necho Setup your cloud connection now `ncd $rclonedir`nrclone config`npowershell.exe C:\Users\$username\AppData\Roaming\techahold\updateconfig.ps1"
-Set-Content "C:\Users\$username\AppData\Roaming\techahold\$RemoteName $username.bat" "@echo off `ncd $rclonedir`nrclone mount remotename:/ P: --volname $MapDriveName --vfs-cache-mode writes --ignore-checksum --ignore-size --no-console --log-file %LOCALAPPDATA%\rclone\logs\driveP.txt"
+Set-Content "C:\Users\$username\AppData\Roaming\techahold\Setup $RemoteName Mapped Drive.bat" "@echo off `necho Setup your cloud connection now `ncd $rclonedir`nrclone config`npowershell.exe C:\Users\$username\AppData\Roaming\techahold\updateconfig.ps1"
+Set-Content "C:\Users\$username\AppData\Roaming\techahold\$RemoteName Mapped Drive for $username.bat" "@echo off `ncd $rclonedir`nrclone mount Sharepoint:/ P: --volname $MapDriveName --vfs-cache-mode writes --ignore-checksum --ignore-size --no-console --log-file %LOCALAPPDATA%\rclone\logs\driveP.txt"
 Set-Content "C:\Users\$username\AppData\Roaming\techahold\updateconfig.ps1" "`$RemoteInput= Get-Content C:\Users\$username\AppData\Roaming\rclone\rclone.conf -First 1`n`$RemoteInput= `$RemoteInput -replace '[][]'`n((Get-Content -path 'C:\Users\$username\AppData\Roaming\techahold\$RemoteName $username.bat' -Raw) -replace 'remotename',`$RemoteInput) | Set-Content -Path 'C:\Users\$username\AppData\Roaming\techahold\$RemoteName $username.bat'`nCopy-Item 'C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\$RemoteName\$RemoteName for $username.lnk' -Destination 'C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\$RemoteName for $username.lnk'`ncd '$rclonedir'`nrclone mount `$RemoteInput:/ P: --volname $MapDriveName --vfs-cache-mode writes --no-console --log-file %LOCALAPPDATA%\rclone\logs\driveP.txt"
 
 
