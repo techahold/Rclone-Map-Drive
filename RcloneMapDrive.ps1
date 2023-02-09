@@ -23,12 +23,11 @@ new-item "C:\Users\$username\AppData\Local\rclone\logs" -itemtype directory
 new-item "C:\Users\$username\AppData\Roaming\techahold\" -itemtype directory
 new-item "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\$RemoteName" -itemtype directory
 
-New-Item "C:\Users\$username\AppData\Roaming\techahold\Setup $RemoteName.bat"
-New-Item "C:\Users\$username\AppData\Roaming\techahold\$RemoteName $username.bat"
-New-Item "C:\Users\$username\AppData\Roaming\techahold\updateconfig.ps1"
+New-Item "C:\Users\$username\AppData\Roaming\techahold\Setup $RemoteName Mapped Drive.bat"
+New-Item "C:\Users\$username\AppData\Roaming\techahold\$RemoteName Mapped Drive for $username.bat"
 
-Set-Content "C:\Users\$username\AppData\Roaming\techahold\Setup $RemoteName Mapped Drive.bat" "@echo off `necho Setup your cloud connection now `ncd $rclonedir`nrclone mount Sharepoint:/ S: --volname $MapDriveName --vfs-cache-mode full --ignore-checksum --ignore-size --no-console --log-file %LOCALAPPDATA%\rclone\logs\driveS.txt"
-Set-Content "C:\Users\$username\AppData\Roaming\techahold\$RemoteName Mapped Drive for $username.bat" "@echo off `ncd $rclonedir`nrclone mount Sharepoint:/ S: --volname $MapDriveName --vfs-cache-mode full --ignore-checksum --ignore-size --no-console --log-file %LOCALAPPDATA%\rclone\logs\driveS.txt"
+Set-Content "C:\Users\$username\AppData\Roaming\techahold\Setup $RemoteName Mapped Drive.bat" "@echo off `necho Setup your cloud connection now `ncd ""$rclonedir""`nrclone.exe config`nrclone.exe mount Sharepoint:/ S: --volname $MapDriveName --vfs-cache-mode full --ignore-checksum --ignore-size --no-console --log-file %LOCALAPPDATA%\rclone\logs\driveS.txt"
+Set-Content "C:\Users\$username\AppData\Roaming\techahold\$RemoteName Mapped Drive for $username.bat" "@echo off `ncd ""$rclonedir""`nrclone.exe mount Sharepoint:/ S: --volname $MapDriveName --vfs-cache-mode full --ignore-checksum --ignore-size --no-console --log-file %LOCALAPPDATA%\rclone\logs\driveS.txt"
 
 $ShortcutPath = "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\$RemoteName\Setup $RemoteName.lnk"
 $IconLocation = "$rclonedir\rclone.exe"
@@ -46,7 +45,7 @@ $Shortcut.TargetPath = "C:\Users\$username\AppData\Roaming\techahold\$RemoteName
 $Shortcut.IconLocation = "$IconLocation, $IconArrayIndex"
 $Shortcut.Save()
 
-Copy-Item "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\$RemoteName\$RemoteName for $username.lnk" -Destination 'C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\$RemoteName for $username.lnk'
+Copy-Item "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\$RemoteName\$RemoteName for $username.lnk" -Destination "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\"
 
 # Open Config Folder
 explorer.exe /e,"C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\$RemoteName"
