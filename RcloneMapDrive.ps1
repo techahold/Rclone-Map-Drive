@@ -8,12 +8,12 @@ $MapDriveName="\\server\shared"
 
 #Get and expand programs
 new-item $rclonedir -itemtype directory
-Invoke-WebRequest -Uri "https://downloads.rclone.org/v1.60.0/rclone-v1.60.0-windows-amd64.zip" -outfile "$rclonedir\rclone.zip"
+Invoke-WebRequest -Uri "https://downloads.rclone.org/v1.61.1/rclone-v1.61.1-windows-amd64.zip" -outfile "$rclonedir\rclone.zip"
 Invoke-WebRequest -Uri "https://github.com/winfsp/winfsp/releases/download/v1.11/winfsp-1.11.22176.msi" -outfile "$rclonedir\winfsp.msi"
 Expand-Archive -LiteralPath $rclonedir\rclone.zip -DestinationPath $rclonedir -Force
-Copy-Item $rclonedir\rclone-v1.60.0-windows-amd64\* -Destination $rclonedir\
+Copy-Item $rclonedir\rclone-v1.61.1-windows-amd64\* -Destination $rclonedir\
 Remove-Item "$rclonedir\rclone.zip" -Force
-Remove-Item "$rclonedir\rclone-$tag-windows-amd64\" -Force -Recurse
+Remove-Item "$rclonedir\rclone-v1.61.1-windows-amd64\" -Force -Recurse
 
 #install winfsp
 Start-Process $rclonedir\winfsp.msi -ArgumentList /passive
