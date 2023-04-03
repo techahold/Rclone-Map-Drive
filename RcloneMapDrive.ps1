@@ -15,7 +15,7 @@ Copy-Item $rclonedir\rclone-v1.61.1-windows-amd64\* -Destination $rclonedir\
 Remove-Item "$rclonedir\rclone.zip" -Force
 Remove-Item "$rclonedir\rclone-v1.61.1-windows-amd64\" -Force -Recurse
 Invoke-WebRequest -Uri "https://www.nirsoft.net/utils/nircmd-x64.zip" -outfile "$rclonedir\nircmd.zip"
-Expand-Archive -LiteralPath nircmd.zip -Force
+Expand-Archive -LiteralPath $rclonedir\nircmd.zip -Force
 Copy-Item $rclonedir\nircmd\nircmd.exe -Destination $rclonedir\
 Remove-Item "$rclonedir\nircmd.zip" -Force
 Remove-Item "$rclonedir\nircmd\" -Force -Recurse
