@@ -14,6 +14,10 @@ Expand-Archive -LiteralPath $rclonedir\rclone.zip -DestinationPath $rclonedir -F
 Copy-Item $rclonedir\rclone-v1.61.1-windows-amd64\* -Destination $rclonedir\
 Remove-Item "$rclonedir\rclone.zip" -Force
 Remove-Item "$rclonedir\rclone-v1.61.1-windows-amd64\" -Force -Recurse
+Invoke-WebRequest -Uri "https://www.nirsoft.net/utils/nircmd-x64.zip" -outfile "$rclonedir\nircmd.zip"
+Expand-Archive -LiteralPath $rclonedir\nircmd.zip -DestinationPath $rclonedir -Force
+Remove-Item "$rclonedir\nircmd.zip" -Force
+Remove-Item "$rclonedir\nircmd\" -Force -Recurse
 
 #install winfsp
 Start-Process $rclonedir\winfsp.msi -ArgumentList /passive
@@ -26,8 +30,8 @@ new-item "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Progra
 New-Item "C:\Users\$username\AppData\Roaming\techahold\Setup $RemoteName Mapped Drive.bat"
 New-Item "C:\Users\$username\AppData\Roaming\techahold\$RemoteName Mapped Drive for $username.bat"
 
-Set-Content "C:\Users\$username\AppData\Roaming\techahold\Setup $RemoteName Mapped Drive.bat" "@echo off `necho Setup your cloud connection now `ncd ""$rclonedir""`nrclone.exe config`nrclone.exe mount Sharepoint:/ S: --volname $MapDriveName --vfs-cache-mode full --ignore-checksum --ignore-size --no-console --log-file %LOCALAPPDATA%\rclone\logs\driveS.txt"
-Set-Content "C:\Users\$username\AppData\Roaming\techahold\$RemoteName Mapped Drive for $username.bat" "@echo off `ncd ""$rclonedir""`nrclone.exe mount Sharepoint:/ S: --volname $MapDriveName --vfs-cache-mode full --ignore-checksum --ignore-size --no-console --log-file %LOCALAPPDATA%\rclone\logs\driveS.txt"
+Set-Content "C:\Users\$username\AppData\Roaming\techahold\Setup $RemoteName Mapped Drive.bat" "@echo off `necho Setup your cloud connection now `ncd ""$rclonedir""`nrclone.exe config`nnircmd exec hide rclone.exe mount Sharepoint:/ S: --volname $MapDriveName --vfs-cache-mode full --ignore-checksum --ignore-size --no-console --log-file %LOCALAPPDATA%\rclone\logs\driveS.txt"
+Set-Content "C:\Users\$username\AppData\Roaming\techahold\$RemoteName Mapped Drive for $username.bat" "@echo off `ncd ""$rclonedir""`nnircmd exec hide rclone.exe mount Sharepoint:/ S: --volname $MapDriveName --vfs-cache-mode full --ignore-checksum --ignore-size --no-console --log-file %LOCALAPPDATA%\rclone\logs\driveS.txt"
 
 $ShortcutPath = "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\$RemoteName\Setup $RemoteName.lnk"
 $IconLocation = "$rclonedir\rclone.exe"
