@@ -30,8 +30,8 @@ new-item "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Progra
 New-Item "C:\Users\$username\AppData\Roaming\techahold\Setup $RemoteName Mapped Drive.bat"
 New-Item "C:\Users\$username\AppData\Roaming\techahold\$RemoteName Mapped Drive for $username.bat"
 
-Set-Content "C:\Users\$username\AppData\Roaming\techahold\Setup $RemoteName Mapped Drive.bat" "@echo off `necho Setup your cloud connection now use $RemoteName when asked `ncd ""$rclonedir""`nrclone.exe config`nnircmd exec hide rclone.exe mount ${RemoteName}:/ P: --volname $MapDriveName --vfs-cache-mode full --ignore-checksum --ignore-size --no-console --log-file %LOCALAPPDATA%\rclone\logs\driveP.txt"
-Set-Content "C:\Users\$username\AppData\Roaming\techahold\$RemoteName Mapped Drive for $username.bat" "@echo off `ncd ""$rclonedir""`nnircmd exec hide rclone.exe mount ${RemoteName}:/ P: --volname $MapDriveName --vfs-cache-mode full --ignore-checksum --ignore-size --no-console --log-file %LOCALAPPDATA%\rclone\logs\driveP.txt"
+Set-Content "C:\Users\$username\AppData\Roaming\techahold\Setup $RemoteName Mapped Drive.bat" "@echo off `necho Setup your cloud connection now use $RemoteName when asked `ncd ""$rclonedir""`nrclone.exe config`nnircmd exec hide rclone.exe mount ${RemoteName}:/ S: --volname $MapDriveName --vfs-cache-mode full --ignore-checksum --ignore-size --no-console --log-file %LOCALAPPDATA%\rclone\logs\driveS.txt"
+Set-Content "C:\Users\$username\AppData\Roaming\techahold\$RemoteName Mapped Drive for $username.bat" "@echo off `ncd ""$rclonedir""`nnircmd exec hide rclone.exe mount ${RemoteName}:/ S: --volname $MapDriveName --vfs-cache-mode full --ignore-checksum --ignore-size --no-console --log-file %LOCALAPPDATA%\rclone\logs\driveS.txt"
 
 $ShortcutPath = "C:\Users\$username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\$RemoteName\Setup $RemoteName.lnk"
 $IconLocation = "$rclonedir\rclone.exe"
